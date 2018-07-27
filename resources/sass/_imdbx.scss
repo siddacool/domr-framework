@@ -1,0 +1,321 @@
+.imdbx {
+  background-color: #464646;
+  height: 100vh;
+
+  .container {
+    display: block;
+    margin: 0 auto;
+    max-width: 950px;
+    width: 100%;
+  }
+
+  &__header {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 700;
+  }
+
+  &__search {
+    position: relative;
+
+    input {
+      border: 0;
+      border-radius: 4px;
+      box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .21);
+      display: block;
+      font-size: 17px;
+      height: 40px;
+      margin: 0 auto;
+      padding: 0 .5rem;
+      position: relative;
+      top: 11px;
+      width: calc(100% - 1rem);
+
+      @include desktop {
+        max-width: 550px;
+      }
+    }
+
+    ul {
+      background-color: #fff;
+      border-radius: 4px;
+      display: block;
+      left: .5rem;
+      max-height: 300px;
+      overflow-y: auto;
+      position: absolute;
+      top: 62px;
+      width: calc(100% - 1rem);
+
+      &:empty {
+        display: none;
+      }
+
+      @include desktop {
+        left: 198px;
+        max-width: 550px;
+      }
+
+      li {
+        display: block;
+
+        a {
+          display: block;
+          padding: .3rem .5rem;
+
+          &:hover {
+            background-color: #0065ff;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .show {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+
+    .container {
+      @include desktop {
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+      }
+    }
+
+    &__block {
+      color: #fff;
+      padding: 1rem;
+
+      @include desktop {
+        height: 50vh;
+        overflow-y: auto;
+        width: 50%;
+      }
+
+      &:nth-child(1) {
+        background-color: #3f3f3f;
+        height: 50vh;
+        padding: 0;
+
+        @include desktop {
+          overflow-y: none;
+        }
+      }
+
+      &:nth-child(2) {
+        background-color: #3b3b3b;
+        padding-top: 20px;
+
+        @include desktop {
+          padding-top: 60px;
+        }
+      }
+
+      &:nth-child(3) {
+        background-color: #373737;
+      }
+
+      &:nth-child(4) {
+        background-color: #3f3f3f;
+      }
+    }
+
+    &__poster {
+      display: flex;
+      height: 100%;
+      width: 100%;
+
+      img {
+        display: block;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+
+    &__name {
+      display: block;
+      font-size: 42px;
+      font-weight: 300;
+      letter-spacing: .3px;
+      text-align: center;
+
+      @include desktop {
+        font-size: 62px;
+      }
+    }
+
+    &__genre {
+      display: block;
+      padding-top: 7px;
+      text-align: center;
+    }
+
+    &__description {
+      font-size: 21px;
+      padding-top: 1.3rem;
+      text-align: center;
+
+      @include desktop {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+
+    &__rating {
+      z-index: 500;
+
+      @include desktop {
+        left: calc(50vw - 50px);
+        position: fixed;
+        top: calc(50vh - 50px);
+      }
+
+      .star {
+        align-items: center;
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        margin: 1.5rem auto 0;
+        position: relative;
+        width: 60px;
+
+        @include desktop {
+          height: 100px;
+          margin: 0 auto;
+          width: 100px;
+        }
+
+        svg {
+          fill: #e8ce10;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          z-index: 100;
+        }
+
+        .rating {
+          color: #000;
+          display: inline-block;
+          font-size: 20px;
+          font-weight: 600;
+          letter-spacing: -.5px;
+          position: relative;
+          top: 2px;
+          z-index: 200;
+
+           @include desktop {
+            font-size: 27px;
+          }
+        }
+      }
+    }
+
+    &__cast {
+      display: block;
+
+      &__list {
+        align-items: center;
+        display: flex;
+        margin: 15px 0;
+      }
+
+      .image {
+        display: block;
+        height: 100px;
+        width: 70px;
+
+        img {
+          display: block;
+          height: 100%;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+
+      .name {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding-left: 10px;
+      }
+
+      .character {
+        font-size: 24px;
+        margin-bottom: 2px;
+
+        @include desktop {
+          font-size: 29px;
+        }
+      }
+
+      .person {
+        @include desktop {
+          font-size: 17px;
+        }
+      }
+    }
+
+    &__episodes {
+      display: block;
+      margin-top: 2rem;
+
+      ol {
+        display: block;
+      }
+
+      &__list {
+        display: block;
+        margin: 5px 0;
+        position: relative;
+
+        .name {
+          font-size: 17px;
+          margin-left: 10px;
+        }
+      }
+
+      &__sub-list {
+        display: block;
+      }
+
+      .season {
+        font-size: 20px;
+        left: 100%;
+        margin: 23px 0 10px;
+        position: sticky;
+        top: 10%;
+        z-index: 600;
+
+        @include desktop {
+          left: 100%;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .pill {
+    border-radius: 16px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 1.1;
+    margin: 4px;
+    padding: 3px 8px;
+    padding-bottom: 5px;
+
+    &--info {
+      background-color: #0065ff;
+      color: #fff;
+    }
+  }
+}

@@ -1,24 +1,59 @@
 import { Component } from '../DOMRFramework/source/';
 import goodOlAjax from '../utils/good-ol-ajax-promise';
 import Search from '../components/ImdbExploreSearch';
-import Image from '../components/Image';
+import ShowCast from '../components/ImddbExploreCast';
+import ShowEpisodes from '../components/ImddbExploreEpisodes';
 
-function populateShowInfo(show) {
-  const imdbxBody = document.getElementById('imdx-main-body');
+function populateShowInfo(show, api) {
   const thisShow = show;
-  const genres = thisShow.genres ? thisShow.genres.join(',') : '';
-  const img = new Image(thisShow.image.medium);
-
+  const thisApi = api;
+  const showCast = new ShowCast(thisApi, thisShow.id);
+  const showEpisodes = new ShowEpisodes(thisApi, thisShow.id);
+  const imdbxBody = document.getElementById('imdx-main-body');
+  const genres = thisShow.genres
+                 && thisShow.genres.length
+                 ? thisShow.genres
+                 : [];
   thisShow.genres = genres;
 
   imdbxBody.innerHTML = `
-    <span class="show__name" data-alt="${thisShow.name}">${thisShow.name}</span>
-    <span class="show__runtime" data-alt="${thisShow.runtime}">${thisShow.runtime} Mins</span>
-    <span class="show__status" data-alt="${thisShow.status}">${thisShow.status}</span>
-    <span class="show__genres" data-alt="${thisShow.genres}">${thisShow.genres}</span>
-    <span class="show__rating" data-alt="${thisShow.rating.average || ''}">${thisShow.rating.average || ''}</span>
-    <div class="show__description">${thisShow.summary ? thisShow.summary.replace(/<\/?[^>]+(>|$)/g, '') : ''}</div>
-    ${img.Render()}
+    <div class="container">
+      <div class="show__block">
+        <div class="show__poster">
+          <img src="${thisShow.image.medium}" alt="" />
+        </div>
+      </div>
+      <div class="show__block">
+        <span class="show__name" data-alt="${thisShow.name}">${thisShow.name}</span>
+        <div class="show__info">
+          <div class="show__time"></div>
+          <div class="show__genre">
+            ${thisShow.genres.length ? `
+              ${thisShow.genres.map(genre => `<span class="pill pill--info">${genre}</span>`).join('')}
+            ` : ''}
+          </div>
+        </div>
+        <div class="show__rating">
+          ${thisShow.rating && thisShow.rating.average ?
+            `
+              <div class="star">
+                <svg role="img" class="icon">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-iconmonstr-star-3"></use>
+                </svg>
+                <span class="rating" data-alt="${thisShow.rating.average}">${thisShow.rating.average}</span>
+              </div>
+            ` : ''
+          }
+        </div>
+        <div class="show__description">${thisShow.summary ? thisShow.summary.replace(/<\/?[^>]+(>|$)/g, '') : ''}</div>
+      </div>
+      <div class="show__block">
+        ${showCast.Render()}
+      </div>
+      <div class="show__block">
+        ${showEpisodes.Render()}
+      </div>
+    </div>
   `;
 }
 
@@ -41,10 +76,11 @@ export default class extends Component {
     return `
       <div class="imdbx">
         <div class="imdbx__header">
-          ${search.Render()}
+          <div class="container">
+            ${search.Render()}
+          </div>
         </div>
-        <div class="imdbx__body show" id="imdx-main-body">
-        </div>
+        <div class="imdbx__body show" id="imdx-main-body"></div>
       </div>
     `;
   }
@@ -59,7 +95,7 @@ export default class extends Component {
 
       goodOlAjax(showApi)
       .then((imdb) => {
-        populateShowInfo(imdb);
+        populateShowInfo(imdb, api);
       })
       .catch((err) => {
         console.log(err);

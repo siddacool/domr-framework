@@ -1,4 +1,7 @@
 import ImdbExploreContainer from '../containers/ImdbExploreContainer';
+import env from '../../../../env';
+
+const protocol = env.APP_ENV === 'production' ? 'https' : 'http';
 
 export default function (data) {
   const title = data
@@ -9,8 +12,7 @@ export default function (data) {
                 : '';
 
   const wrapper = document.getElementById('wrapper');
-  const imdbX = new ImdbExploreContainer('http://api.tvmaze.com', title);
-
+  const imdbX = new ImdbExploreContainer(`${protocol}://api.tvmaze.com`, title);
 
   wrapper.innerHTML = imdbX.Render();
 }

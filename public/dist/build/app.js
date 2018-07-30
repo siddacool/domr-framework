@@ -2144,7 +2144,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function populateShowInfo(show) {
   var thisShow = show.show;
-  var imdbid = thisShow.externals && thisShow.externals.imdb ? thisShow.externals.imdb : thisShow.id;
+  var imdbid = thisShow.id;
 
   thisShow.imdbid = imdbid;
 

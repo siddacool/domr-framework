@@ -5,8 +5,7 @@ import goodOlAjax from '../utils/good-ol-ajax-promise';
 
 function populateShowInfo(show) {
   const thisShow = show.show;
-  const imdbid = thisShow.externals && thisShow.externals.imdb
-                ? thisShow.externals.imdb : thisShow.id;
+  const imdbid = thisShow.id;
 
   thisShow.imdbid = imdbid;
 

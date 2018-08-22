@@ -74,6 +74,288 @@ label svg {
   min-height: 100vh;
 }
 
+.code {
+  background-color: #f1f1f1;
+  font-family: monospace;
+  font-size: 17px;
+  padding: 10px;
+}
+
+.code--single {
+  max-width: 600px;
+}
+
+.code--multi {
+  white-space: pre-wrap;
+}
+
+.btn {
+  background-color: black;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-weight: 600;
+  min-height: 20px;
+  min-width: 50px;
+  padding: 8px;
+  padding-bottom: 9px;
+}
+
+.home {
+  background-color: #fff;
+  height: 100vh;
+  padding-top: 18vh;
+  width: 100vw;
+}
+
+.home .container {
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.home h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .home h1 {
+    font-size: 60px;
+  }
+}
+
+.home p {
+  font-size: 18px;
+  margin-bottom: 49px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 606px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .home p {
+    font-size: 24px;
+  }
+}
+
+.home .code {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  max-width: 400px;
+}
+
+.config {
+  background-color: #fff;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  height: 100vh;
+  overflow: none;
+  width: 100vw;
+}
+
+.config .container {
+  max-width: 1024px;
+  padding: 1rem;
+  padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .config .container {
+    padding: 1rem 2rem;
+    padding-bottom: 100px;
+  }
+}
+
+.config .nav {
+  -webkit-align-items: center;
+          align-items: center;
+  border-bottom: 1px solid #f8f8f8;
+  display: -webkit-flex;
+  display: flex;
+  height: 40px;
+  padding-left: 1rem;
+  width: 100%;
+}
+
+.config .nav a {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.config .toggle {
+  -webkit-align-items: center;
+          align-items: center;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  padding-top: 7px;
+}
+
+.config .toggle .icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.config .sidebar {
+  background-color: #f8f8f8;
+  display: block;
+  height: calc(100% - 40px);
+  left: 0;
+  position: fixed;
+  top: 40px;
+  width: 200px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .config .sidebar {
+    position: static;
+    width: 250px;
+  }
+}
+
+.config .sidebar li {
+  display: block;
+}
+
+.config .sidebar li a {
+  display: block;
+  padding: 5px 5px 5px 1rem;
+}
+
+@media only screen and (min-width: 1025px) {
+  .config .sidebar li a {
+    padding: .7rem .7rem .7rem 1rem;
+  }
+}
+
+.config .sidebar li a.active {
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.config .description {
+  -webkit-flex: 1;
+          flex: 1;
+  height: calc(100% - 40px);
+  min-width: 100px;
+  overflow-y: auto;
+}
+
+.config h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.config h3 {
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+.config .code {
+  margin: 20px 0;
+}
+
+.config ul {
+  padding-left: 18px;
+}
+
+.config table,
+.config tr,
+.config th,
+.config td {
+  display: block;
+}
+
+.config table {
+  margin-top: 10px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .config table {
+    border-collapse: collapse;
+    display: table;
+    margin-top: 30px;
+    width: 100%;
+  }
+}
+
+.config tbody {
+  display: block;
+}
+
+@media only screen and (min-width: 1025px) {
+  .config tbody {
+    display: table-row-group;
+  }
+}
+
+.config tr {
+  border-bottom: 2px solid #f1f1f1;
+  padding: 10px;
+}
+
+.config tr:first-child {
+  display: none;
+}
+
+@media only screen and (min-width: 1025px) {
+  .config tr:first-child {
+    display: table-row;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .config tr {
+    display: table-row;
+  }
+}
+
+.config td,
+.config th {
+  padding-bottom: 5px;
+}
+
+@media only screen and (min-width: 1025px) {
+  .config td,
+  .config th {
+    border-bottom: 2px solid #f1f1f1;
+    display: table-cell;
+    padding: 12px 8px;
+    padding-left: 0;
+  }
+}
+
+.config td:first-child {
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 1025px) {
+  .config td:first-child {
+    font-weight: normal;
+  }
+}
+
+.config th {
+  display: none;
+  text-align: left;
+}
+
+@media only screen and (min-width: 1025px) {
+  .config th {
+    display: table-cell;
+  }
+}
+
+.checklist__body li input:checked + span {
+  text-decoration: line-through;
+}
+
 .imdbx {
   background-color: #464646;
   height: 100vh;
@@ -396,6 +678,17 @@ label svg {
 .imdbx .show__episodes__list .name {
   font-size: 16px;
   margin-left: 10px;
+}
+
+.imdbx .show__episodes__list .description {
+  font-size: 14px;
+  margin-bottom: 25px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.imdbx .show__episodes__list .description:empty {
+  display: none;
 }
 
 .imdbx .show__episodes__sub-list {

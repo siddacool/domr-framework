@@ -17,20 +17,6 @@
     }
   }
 
-  .nav {
-    align-items: center;
-    border-bottom: 1px solid #f8f8f8;
-    display: flex;
-    height: 40px;
-    padding-left: 1rem;
-    width: 100%;
-
-    a {
-      display: inline-block;
-      margin-right: 5px;
-    }
-  }
-
   .toggle {
     align-items: center;
     display: inline-flex;
@@ -47,11 +33,13 @@
     display: block;
     height: calc(100% - 40px);
     left: 0;
+    padding-left: 0;
     position: fixed;
     top: 40px;
     width: 200px;
 
     @include desktop {
+      margin-top: 40px;
       position: static;
       width: 250px;
     }
@@ -78,6 +66,7 @@
   .description {
     flex: 1;
     height: calc(100% - 40px);
+    margin-top: 40px;
     min-width: 100px;
     overflow-y: auto;
   }

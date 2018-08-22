@@ -1,0 +1,51 @@
+.navbar {
+  align-items: center;
+  border-bottom: 1px solid #f8f8f8;
+  display: flex;
+  height: 40px;
+  left: 0;
+  padding-left: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 400;
+
+  &__links {
+    display: block;
+    margin-left: auto;
+    padding: 0;
+    padding-right: 1rem;
+
+    a {
+      margin: 0;
+    }
+
+    &__li {
+      display: inline-block;
+      margin-left: .5rem;
+
+      &--homepage {
+        position: relative;
+        top: -3px;
+      }
+
+      &--github {
+        svg {
+          height: 1.2rem;
+          width: 1.2rem;
+        }
+      }
+
+      &--npm {
+        svg {
+          height: 1rem;
+          width: 2.25rem;
+        }
+      }
+    }
+  }
+
+  a {
+    display: inline-block;
+  }
+}

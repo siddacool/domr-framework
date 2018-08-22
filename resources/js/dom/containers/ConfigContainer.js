@@ -1,18 +1,15 @@
 import Sidebar from '../components/ConfigSidebar';
 import ConfigDescription from '../components/ConfigDescription';
-import ConfigToggle from '../components/ConfigToggle';
+import Navbar from '../components/Navbar';
 
 export default function (configArr, activeTopic) {
   const sidebar = Sidebar(configArr, activeTopic);
   const description = ConfigDescription[activeTopic];
-  const configToggle = new ConfigToggle();
+  const navbar = Navbar('Getting Started..', true);
 
   return `
     <div class="config">
-      <div class="nav">
-        ${configToggle.Render()}
-        <b><a href="#/">DOMR</a></b>Getting Started..
-      </div>
+      ${navbar}
       ${sidebar}
       <div class="description">
         <div class="container">

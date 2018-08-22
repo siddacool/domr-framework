@@ -101,6 +101,56 @@ label svg {
   padding-bottom: 9px;
 }
 
+.navbar {
+  -webkit-align-items: center;
+          align-items: center;
+  border-bottom: 1px solid #f8f8f8;
+  display: -webkit-flex;
+  display: flex;
+  height: 40px;
+  left: 0;
+  padding-left: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 400;
+}
+
+.navbar__links {
+  display: block;
+  margin-left: auto;
+  padding: 0;
+  padding-right: 1rem;
+}
+
+.navbar__links a {
+  margin: 0;
+}
+
+.navbar__links__li {
+  display: inline-block;
+  margin-left: .5rem;
+}
+
+.navbar__links__li--homepage {
+  position: relative;
+  top: -3px;
+}
+
+.navbar__links__li--github svg {
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.navbar__links__li--npm svg {
+  height: 1rem;
+  width: 2.25rem;
+}
+
+.navbar a {
+  display: inline-block;
+}
+
 .home {
   background-color: #fff;
   height: 100vh;
@@ -171,22 +221,6 @@ label svg {
   }
 }
 
-.config .nav {
-  -webkit-align-items: center;
-          align-items: center;
-  border-bottom: 1px solid #f8f8f8;
-  display: -webkit-flex;
-  display: flex;
-  height: 40px;
-  padding-left: 1rem;
-  width: 100%;
-}
-
-.config .nav a {
-  display: inline-block;
-  margin-right: 5px;
-}
-
 .config .toggle {
   -webkit-align-items: center;
           align-items: center;
@@ -205,6 +239,7 @@ label svg {
   display: block;
   height: calc(100% - 40px);
   left: 0;
+  padding-left: 0;
   position: fixed;
   top: 40px;
   width: 200px;
@@ -212,6 +247,7 @@ label svg {
 
 @media only screen and (min-width: 1025px) {
   .config .sidebar {
+    margin-top: 40px;
     position: static;
     width: 250px;
   }
@@ -241,6 +277,7 @@ label svg {
   -webkit-flex: 1;
           flex: 1;
   height: calc(100% - 40px);
+  margin-top: 40px;
   min-width: 100px;
   overflow-y: auto;
 }

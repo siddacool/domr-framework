@@ -1,0 +1,14 @@
+.code {
+  background-color: #f1f1f1;
+  font-family: $code-font;
+  font-size: 17px;
+  padding: 10px;
+
+  &--single {
+    max-width: 600px;
+  }
+
+  &--multi {
+    white-space: pre-wrap;
+  }
+}

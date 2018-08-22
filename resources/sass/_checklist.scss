@@ -1,0 +1,27 @@
+.checklist {
+  &__body {
+    ul {
+
+    }
+
+    li {
+      input {
+        &:checked + span {
+          text-decoration: line-through;
+        }
+      }
+
+      span {
+
+      }
+
+      .close {
+
+      }
+
+      .undo {
+
+      }
+    }
+  }
+}

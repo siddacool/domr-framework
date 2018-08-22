@@ -3,11 +3,13 @@ import goodOlAjax from '../utils/good-ol-ajax-promise';
 import Search from '../components/ImdbExploreSearch';
 import ShowCast from '../components/ImddbExploreCast';
 import ShowEpisodes from '../components/ImddbExploreEpisodes';
+import Poster from '../components/ImddbExplorePoster';
 
 function populateShowInfo(show, api) {
   const thisShow = show;
   const thisApi = api;
   const showCast = new ShowCast(thisApi, thisShow.id);
+  const poster = new Poster(thisShow);
   const showEpisodes = new ShowEpisodes(thisApi, thisShow.id);
   const imdbxBody = document.getElementById('imdx-main-body');
   const genres = thisShow.genres
@@ -19,9 +21,7 @@ function populateShowInfo(show, api) {
   imdbxBody.innerHTML = `
     <div class="container">
       <div class="show__block">
-        <div class="show__poster">
-          <img src="${thisShow.image.medium}" alt="" />
-        </div>
+        ${poster.Render()}
       </div>
       <div class="show__block">
         <span class="show__name" data-alt="${thisShow.name}">${thisShow.name}</span>

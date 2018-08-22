@@ -1,5 +1,6 @@
 import groupBy from 'lodash/groupBy';
 import { Component } from '../DOMRFramework/source/';
+import Episode from './ImddbExploreEpisode';
 import goodOlAjax from '../utils/good-ol-ajax-promise';
 
 let curruntColor;
@@ -23,7 +24,20 @@ function randomColor() {
   return colors[random];
 }
 
-function populateEpisodeInfo(episodesObj, target) {
+function makeEpisodes(api, episodeData, bgColor) {
+  const episode = new Episode(api, episodeData);
+
+  return `
+    <li class="show__episodes__sub-list" data-episode="${episodeData.id}">
+      <span class="episode pill" style="color:#fff; background-color:${bgColor};" data-season="${episodeData.season}" data-episode="${episode.number}">
+        E${episodeData.number < 10 ? `0${episodeData.number}` : episodeData.number}
+      </span>
+      ${episode.Render()}
+    </li>
+  `;
+}
+
+function populateEpisodeInfo(api, episodesObj, target) {
   const thisSelf = target;
   const episodesInfo = episodesObj;
   const seasons = groupBy(episodesInfo, 'season');
@@ -41,14 +55,7 @@ function populateEpisodeInfo(episodesObj, target) {
       <li class="show__episodes__list">
         <ol>
           <span class="season pill" style="color:#fff; background-color:${bgColor};">Season ${key < 10 ? `0${key}` : key}</span>
-          ${episodesArr.map(episode => `
-              <li class="show__episodes__sub-list" data-episode="${episode.id}">
-                <span class="episode pill" style="color:#fff; background-color:${bgColor};" data-season="${episode.season}" data-episode="${episode.number}">
-                  E${episode.number < 10 ? `0${episode.number}` : episode.number}
-                </span>
-                <span class="name" data-alt="${episode.name}">${episode.name}</span>
-              </li>
-          `).join('')}
+          ${episodesArr.map(episode => makeEpisodes(api, episode, bgColor)).join('')}
         </ol>
       </li>
     `;
@@ -78,7 +85,7 @@ export default class extends Component {
     goodOlAjax(searchApi)
     .then((episodes) => {
       if (episodes.length) {
-        populateEpisodeInfo(episodes, thisSelf);
+        populateEpisodeInfo(api, episodes, thisSelf);
       }
     })
     .catch((err) => {

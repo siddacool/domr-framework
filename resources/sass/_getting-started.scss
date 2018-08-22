@@ -1,0 +1,175 @@
+.config {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  overflow: none;
+  width: 100vw;
+
+  .container {
+    max-width: 1024px;
+    padding: 1rem;
+    padding-bottom: 100px;
+
+    @include desktop {
+      padding: 1rem 2rem;
+      padding-bottom: 100px;
+    }
+  }
+
+  .nav {
+    align-items: center;
+    border-bottom: 1px solid #f8f8f8;
+    display: flex;
+    height: 40px;
+    padding-left: 1rem;
+    width: 100%;
+
+    a {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+
+  .toggle {
+    align-items: center;
+    display: inline-flex;
+    padding-top: 7px;
+
+    .icon {
+      height: 2rem;
+      width: 2rem;
+    }
+  }
+
+  .sidebar {
+    background-color: #f8f8f8;
+    display: block;
+    height: calc(100% - 40px);
+    left: 0;
+    position: fixed;
+    top: 40px;
+    width: 200px;
+
+    @include desktop {
+      position: static;
+      width: 250px;
+    }
+
+    li {
+      display: block;
+
+      a {
+        display: block;
+        padding: 5px 5px 5px 1rem;
+
+        @include desktop {
+          padding: .7rem .7rem .7rem 1rem;
+        }
+
+        &.active {
+          text-decoration: underline;
+          text-underline-position: under;
+        }
+      }
+    }
+  }
+
+  .description {
+    flex: 1;
+    height: calc(100% - 40px);
+    min-width: 100px;
+    overflow-y: auto;
+  }
+
+  h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    margin-top: 30px;
+  }
+
+  .code {
+    margin: 20px 0;
+  }
+
+  ul {
+    padding-left: 18px;
+  }
+
+  table,
+  tr,
+  th,
+  td {
+    display: block;
+  }
+
+  table {
+    margin-top: 10px;
+    @include desktop {
+      border-collapse: collapse;
+      display: table;
+      margin-top: 30px;
+      width: 100%;
+    }
+  }
+
+  tbody {
+    display: block;
+
+    @include desktop {
+      display: table-row-group;
+    }
+  }
+
+  tr {
+    border-bottom: 2px solid #f1f1f1;
+    padding: 10px;
+
+    &:first-child {
+      display: none;
+
+      @include desktop {
+        display: table-row;
+      }
+    }
+
+    @include desktop {
+      display: table-row;
+    }
+  }
+
+  td,
+  th {
+    padding-bottom: 5px;
+    @include desktop {
+      border-bottom: 2px solid #f1f1f1;
+      display: table-cell;
+      padding: 12px 8px;
+      padding-left: 0;
+    }
+  }
+
+  td {
+    &:first-child {
+      font-weight: 500;
+
+      @include desktop {
+        font-weight: normal;
+      }
+    }
+  }
+
+  th {
+    display: none;
+    text-align: left;
+    @include desktop {
+      display: table-cell;
+    }
+  }
+}

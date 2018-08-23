@@ -3,34 +3,38 @@ export default function () {
     <h2>View</h2>
 
     <p>View is a function that executes when matching route is active.</p>
+    
+    <pre>
+    <code class="javascript">
+    import HomePageContainer from '../containers/HomePageContainer';
 
-    <div class="code code--multi">
-      import HomePageContainer from '../containers/HomePageContainer';
+    export default function (data) {
+      const wrapper = document.getElementById('wrapper');
+      const home = new HomePageContainer();
 
-      export default function (data) {
-        const wrapper = document.getElementById('wrapper');
-        const home = new HomePageContainer();
-
-        wrapper.innerHTML = home.Render();
-      }
-    </div>
+      wrapper.innerHTML = home.Render();
+    }
+    </code>
+    </pre>
 
     <p>A view updates root HTML element (#wrapper in this case) with the markup of given <a href="#/config/component">Component</a></p>
 
     <h3>data parameter</h3>
     <p>a View takes data as an optional parameter</p>
 
-    <div class="code code--multi">
-      console.log(data);
+    <pre>
+    <code class="javascript">
+    console.log(data);
 
-      //output
+    //output
 
-      {
-        path: "/"
-        metadata: "",
-        query: "",
-      }
-    </div>
+    {
+      path: "/",
+      metadata: "",
+      query: "",
+    }
+    </code>
+    </pre>
 
     <p>data obj can have three diffrent params
       <ul>

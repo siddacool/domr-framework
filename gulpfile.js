@@ -27,7 +27,7 @@ gulp.task('favicon', () => {
 
 gulp.task('alt-assets', () => {
   return gulp
-  .src('./resources/alt-assets/*.**')
+  .src('./resources/alt-assets/**/*.**')
   .pipe(gulp.dest('./dist/public/dist/alt-assets/'));
 });
 

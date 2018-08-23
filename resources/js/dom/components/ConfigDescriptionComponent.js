@@ -3,8 +3,9 @@ export default function () {
     <h2>Component</h2>
 
     <p>Component is a class with HTML markup and events attached to it.</p>
-
-    <div class="code code--multi">
+  
+    <pre>
+    <code class="javascript">
       import { Component } from 'domr-framework';
 
       export default class extends Component {
@@ -31,7 +32,8 @@ export default function () {
           const thisSelf = this.GetThisComponent();
         }
       }
-    </div>
+    </code>
+    </pre>
 
     <h3>Markup()</h3>
     <p>Markup hosts HTML Markup for the component</p>
@@ -48,29 +50,32 @@ export default function () {
     <h3>Simplified Common Events</h3>
     <p>
       Some commonly used events has their separate shorthands which can replaced this.On().
-       <div class="code code--multi">
-       ...
-
-        Events() {
-          this.Click((self, e) => {});
-
-          this.Mouseover((self, e) => {});
-
-          this.Mouseout((self, e) => {});
-
-          this.Input((self, e) => {});
-
-          this.Blur((self, e) => {});
-
-          this.Keydown((self, e) => {});
-
-          this.Keypress((self, e) => {});
-
-          this.Keyup((self, e) => {});
-        }
-
-        ...
-    </div>
     </p>
+
+    <pre>
+    <code class="javascript">
+    ...
+
+    Events() {
+      this.Click((self, e) => {});
+
+      this.Mouseover((self, e) => {});
+
+      this.Mouseout((self, e) => {});
+
+      this.Input((self, e) => {});
+
+      this.Blur((self, e) => {});
+
+      this.Keydown((self, e) => {});
+
+      this.Keypress((self, e) => {});
+
+      this.Keyup((self, e) => {});
+    }
+
+    ...
+    </code>
+    <pre>
   `;
 }

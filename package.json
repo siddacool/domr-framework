@@ -18,7 +18,7 @@
   "license": "ISC",
   "scripts": {
     "svgmake": "gulp svg-make",
-    "build": "webpack --config webpack.config.js && gulp favicon && gulp html-templates",
+    "build": "webpack --config webpack.config.js && gulp alt-assets && gulp favicon && gulp html-templates",
     "buildw": "webpack --config webpack.config.js --watch",
     "start": "npm run buildw"
   },

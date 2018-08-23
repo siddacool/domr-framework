@@ -2,7 +2,7 @@ export default function () {
   return `
     <h2>Router</h2>
 
-    <p>The inbuilt static router can be used to created <b>#hash</b> links</p>
+    <p>A static router for creating hash routes.</p>
 
     <div class="code code--multi">
       import { Router } from 'domr-framework';

@@ -1,9 +1,9 @@
-import subPath from './utils/sub-path-route-maker';
+/*import subPath from './utils/sub-path-route-maker';*/
 import HomePageView from './views/HomePageView';
 import ConfigView from './views/ConfigView';
-import CheckListView from './views/CheckListView';
+/*import CheckListView from './views/CheckListView';
 import ImdbExploreView from './views/ImdbExploreView';
-
+*/
 const main = [
   {
     path: '/',
@@ -23,7 +23,7 @@ const main = [
   },
 ];
 
-const examples = subPath('/eg', [
+/*const examples = subPath('/eg', [
   {
     path: '',
     view: console.log('examples list'),
@@ -41,6 +41,7 @@ const examples = subPath('/eg', [
   },
 ]);
 
-const routes = [...main, ...examples];
+const routes = [...main, ...examples];*/
+const routes = main;
 
 export default routes;

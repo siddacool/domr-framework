@@ -25,6 +25,12 @@ gulp.task('favicon', () => {
   .pipe(gulp.dest('./dist/public/dist/favicon/'));
 });
 
+gulp.task('alt-assets', () => {
+  return gulp
+  .src('./resources/alt-assets/*.**')
+  .pipe(gulp.dest('./dist/public/dist/alt-assets/'));
+});
+
 gulp.task('svg-make', () => {
   return gulp
   .src('./resources/svg-assets/*.svg')

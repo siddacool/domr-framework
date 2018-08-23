@@ -31,9 +31,7 @@ export default function (data) {
                    : defaultTopic;
   const isTopicPresent = configArr.filter(obj => obj.id === getTopic);
   const activeTopic = isTopicPresent.length !== 0 ? isTopicPresent[0].id : defaultTopic;
-  const config = ConfigContainer(configArr, activeTopic);
+  const config = new ConfigContainer(configArr, activeTopic);
 
-  console.log(data);
-
-  wrapper.innerHTML = config;
+  wrapper.innerHTML = config.Render();
 }

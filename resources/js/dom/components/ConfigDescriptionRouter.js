@@ -3,30 +3,32 @@ export default function () {
     <h2>Router</h2>
 
     <p>A static router for creating hash routes.</p>
+    
+    <pre>
+    <code class="javascript">
+    import { Router } from 'domr-framework';
+    import HomePageView from './views/HomePageView';
+    import ConfigView from './views/ConfigView';
 
-    <div class="code code--multi">
-      import { Router } from 'domr-framework';
-      import HomePageView from './views/HomePageView';
-      import ConfigView from './views/ConfigView';
+    const router = new Router([
+      {
+        path: '/',
+        view: HomePageView,
+        isDefault: true,
+      },
+      {
+        path: '/config/',
+        view: ConfigView,
+      },
+      {
+        path: '/config/:topic',
+        view: ConfigView,
+      },
+    ]);
 
-      const router = new Router([
-        {
-          path: '/',
-          view: HomePageView,
-          isDefault: true,
-        },
-        {
-          path: '/config/',
-          view: ConfigView,
-        },
-        {
-          path: '/config/:topic',
-          view: ConfigView,
-        },
-      ]);
-
-      router.Start();
-    </div>
+    router.Start();
+    </code>
+    </pre>
     <p>Router supports wildcard entries like (*, :name)</p>
 
 
@@ -49,15 +51,17 @@ export default function () {
     </p>
 
     <h3>Advanced Router class props</h3>
-    <div class="code code--multi">
-      ...
+    <pre>
+    <code class="javascript">
+    ...
 
-      const router = new Router(routes, {
-        refreshPage: true,
-      });
+    const router = new Router(routes, {
+      refreshPage: true,
+    });
 
-      ...
-    </div>
+    ...
+    </code>
+    </pre>
     <p>
       Besides the first parameter i.e. the array of routes Router class also takes config obj as the second parameter.
       <ul>

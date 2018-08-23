@@ -3,17 +3,19 @@ export default function () {
     <h2>Render</h2>
 
     <p>To process a Component it has to be rendered. The Component can be rendered inside another Component or a view.</p>
-    <div class="code code--multi">
-      // Example of a view
-      import HomePageComponent from '../containers/HomePageComponent';
+    <pre>
+    <code class="javascript">
+    // Example of a view
+    import HomePageComponent from '../containers/HomePageComponent';
 
-      export default function (data) {
-        const wrapper = document.getElementById('wrapper');
-        const home = new HomePageContainer();
+    export default function (data) {
+      const wrapper = document.getElementById('wrapper');
+      const home = new HomePageContainer();
 
-        wrapper.innerHTML = home.Render();
-      }
-    </div>
+      wrapper.innerHTML = home.Render();
+    }
+    </code>
+    </pre>
     
     <h3>.Render()</h3>
     <p>.Render() is a the simpliest method of outputting a Component. It simply returns the content inside Markup()
@@ -24,17 +26,19 @@ export default function () {
     <h3>Add Methods</h3>
     <p>There are various add methods which takes the target (parent/sibling) container as parameter and renders the component.</p>
     
-    <div class="code code--multi">
-      ...
+    <pre>
+    <code class="javascript">
+    ...
 
-        // wrapper is parent container
-        const wrapper = document.getElementById('wrapper');
-        const home = new HomePageContainer();
-        
-        home.AddTo(wrapper)
+    // wrapper is parent container
+    const wrapper = document.getElementById('wrapper');
+    const home = new HomePageContainer();
+    
+    home.AddTo(wrapper)
 
-      ...
-    </div>
+    ...
+    </code>
+    </pre>
 
     <p>
       List of Add Methods

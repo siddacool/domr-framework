@@ -3,10 +3,16 @@ export default function () {
     <h2>Install</h2>
 
     <p>Use <b>npm</b> or <b>yarn</b> to install domr-framework</p>
-
-    <div class="code code--single">npm install domr-framework --save</div>
-
-    <div class="code code--single">yarn add domr-framework</div>
+    
+    <pre>
+    <code class="bash" style="max-width: 600px;">
+    npm install domr-framework --save
+    </code>
+    
+    <pre>
+    <code class="bash" style="max-width: 600px;">
+    yarn add domr-framework
+    </code>
   `;
 }
 

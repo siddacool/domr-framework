@@ -2,7 +2,7 @@ export default function () {
   return `
     <h2>View</h2>
 
-    <p>View is a function that executes when matching route is active</p>
+    <p>View is a function that executes when matching route is active.</p>
 
     <div class="code code--multi">
       import HomePageContainer from '../containers/HomePageContainer';

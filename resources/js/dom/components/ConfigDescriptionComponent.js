@@ -34,7 +34,7 @@ export default function () {
     </div>
 
     <h3>Markup()</h3>
-    <p>Markup hosts HTML DOM Markup for the component</p>
+    <p>Markup hosts HTML Markup for the component</p>
 
     <h3>Events() and this.On()</h3>
     <p>Events can be added by attaching them to this.On() and placing it inside Events()</p>

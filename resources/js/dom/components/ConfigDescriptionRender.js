@@ -22,11 +22,12 @@ export default function () {
 
 
     <h3>Add Methods</h3>
-    <p>There are various add methods which takes the target (parent/sibling) container as parameter add then renders the component in to it.</p>
+    <p>There are various add methods which takes the target (parent/sibling) container as parameter and renders the component.</p>
     
     <div class="code code--multi">
       ...
 
+        // wrapper is parent container
         const wrapper = document.getElementById('wrapper');
         const home = new HomePageContainer();
         

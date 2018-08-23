@@ -73,6 +73,36 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.utils = exports.Router = exports.Component = undefined;
+
+var _Component = __webpack_require__(5);
+
+var _Component2 = _interopRequireDefault(_Component);
+
+var _Router = __webpack_require__(9);
+
+var _Router2 = _interopRequireDefault(_Router);
+
+var _utils = __webpack_require__(14);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Component = _Component2.default;
+exports.Router = _Router2.default;
+exports.utils = _utils2.default;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _hashLocationSet = __webpack_require__(12);
 
@@ -133,36 +163,6 @@ var hashLocation = loc;
 exports.default = hashLocation;
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.utils = exports.Router = exports.Component = undefined;
-
-var _Component = __webpack_require__(5);
-
-var _Component2 = _interopRequireDefault(_Component);
-
-var _Router = __webpack_require__(9);
-
-var _Router2 = _interopRequireDefault(_Router);
-
-var _utils = __webpack_require__(14);
-
-var _utils2 = _interopRequireDefault(_utils);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.Component = _Component2.default;
-exports.Router = _Router2.default;
-exports.utils = _utils2.default;
-
-/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -206,7 +206,7 @@ __webpack_require__(28);
 "use strict";
 
 
-var _source = __webpack_require__(1);
+var _source = __webpack_require__(0);
 
 var _routes = __webpack_require__(15);
 
@@ -493,7 +493,7 @@ var _addView = __webpack_require__(10);
 
 var _addView2 = _interopRequireDefault(_addView);
 
-var _hashLocation = __webpack_require__(0);
+var _hashLocation = __webpack_require__(1);
 
 var _hashLocation2 = _interopRequireDefault(_hashLocation);
 
@@ -678,7 +678,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _hashLocation = __webpack_require__(0);
+var _hashLocation = __webpack_require__(1);
 
 var _hashLocation2 = _interopRequireDefault(_hashLocation);
 
@@ -792,7 +792,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _hashLocation = __webpack_require__(0);
+var _hashLocation = __webpack_require__(1);
 
 var _hashLocation2 = _interopRequireDefault(_hashLocation);
 
@@ -822,7 +822,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _hashLocation = __webpack_require__(0);
+var _hashLocation = __webpack_require__(1);
 
 var _hashLocation2 = _interopRequireDefault(_hashLocation);
 
@@ -932,7 +932,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _source = __webpack_require__(1);
+var _source = __webpack_require__(0);
 
 var _Navbar = __webpack_require__(2);
 
@@ -963,7 +963,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _source = __webpack_require__(1);
+var _source = __webpack_require__(0);
 
 exports.default = class extends _source.Component {
   constructor() {
@@ -1018,11 +1018,9 @@ exports.default = function (data) {
     return obj.id === getTopic;
   });
   var activeTopic = isTopicPresent.length !== 0 ? isTopicPresent[0].id : defaultTopic;
-  var config = (0, _ConfigContainer2.default)(configArr, activeTopic);
+  var config = new _ConfigContainer2.default(configArr, activeTopic);
 
-  console.log(data);
-
-  wrapper.innerHTML = config;
+  wrapper.innerHTML = config.Render();
 };
 
 var _ConfigContainer = __webpack_require__(20);
@@ -1059,13 +1057,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports.default = function (configArr, activeTopic) {
-  var sidebar = (0, _ConfigSidebar2.default)(configArr, activeTopic);
-  var description = _ConfigDescription2.default[activeTopic];
-  var navbar = (0, _Navbar2.default)('Getting Started..', true);
-
-  return '\n    <div class="config">\n      ' + navbar + '\n      ' + sidebar + '\n      <div class="description">\n        <div class="container">\n           ' + description() + '\n        </div>\n      </div>\n    </div>\n  ';
-};
+var _source = __webpack_require__(0);
 
 var _ConfigSidebar = __webpack_require__(21);
 
@@ -1080,6 +1072,34 @@ var _Navbar = __webpack_require__(2);
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = class extends _source.Component {
+  constructor(configArr, activeTopic) {
+    super();
+    this.arr = configArr;
+    this.topic = activeTopic;
+  }
+
+  Markup() {
+    var sidebar = (0, _ConfigSidebar2.default)(this.arr, this.topic);
+    var description = _ConfigDescription2.default[this.topic];
+    var navbar = (0, _Navbar2.default)('Getting Started..', true);
+
+    return '\n      <div class="config">\n        ' + navbar + '\n        ' + sidebar + '\n        <div class="description">\n          <div class="container">\n             ' + description() + '\n          </div>\n        </div>\n      </div>\n    ';
+  }
+
+  AfterRenderDone() {
+    var thisSelf = this.GetThisComponent();
+    var pre = thisSelf.querySelectorAll('pre');
+
+    pre.forEach(function (p) {
+      var code = p.querySelector('code');
+      if (code) {
+        hljs.highlightBlock(code);
+      }
+    });
+  }
+};
 
 /***/ }),
 /* 21 */
@@ -1153,11 +1173,11 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 exports.default = function () {
-    return "\n    <h2>Install</h2>\n\n    <p>Use <b>npm</b> or <b>yarn</b> to install domr-framework</p>\n\n    <div class=\"code code--single\">npm install domr-framework --save</div>\n\n    <div class=\"code code--single\">yarn add domr-framework</div>\n  ";
+  return "\n    <h2>Install</h2>\n\n    <p>Use <b>npm</b> or <b>yarn</b> to install domr-framework</p>\n    \n    <pre>\n    <code class=\"bash\" style=\"max-width: 600px;\">\n    npm install domr-framework --save\n    </code>\n    \n    <pre>\n    <code class=\"bash\" style=\"max-width: 600px;\">\n    yarn add domr-framework\n    </code>\n  ";
 };
 
 /***/ }),
@@ -1172,7 +1192,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-  return "\n    <h2>Router</h2>\n\n    <p>A static router for creating hash routes.</p>\n\n    <div class=\"code code--multi\">\n      import { Router } from 'domr-framework';\n      import HomePageView from './views/HomePageView';\n      import ConfigView from './views/ConfigView';\n\n      const router = new Router([\n        {\n          path: '/',\n          view: HomePageView,\n          isDefault: true,\n        },\n        {\n          path: '/config/',\n          view: ConfigView,\n        },\n        {\n          path: '/config/:topic',\n          view: ConfigView,\n        },\n      ]);\n\n      router.Start();\n    </div>\n    <p>Router supports wildcard entries like (*, :name)</p>\n\n\n    <h3>Router class</h3>\n\n    <p>\n      Router() class takes array of routes as the first parameter.\n      The routes object contains two main parameter and one optional isDefault parameter.\n      <ul>\n        <li><b>path</b> - hash url location</li>\n        <li><b>view</b> - a function to execute (without parentheses)</li>\n        <li><b>isDefault (optional)</b> - if set true then the route becomes the default path</li>\n      </ul>\n    </p>\n\n    <h3>.Start()</h3>\n\n    <p>\n      Initializes the router\n    </p>\n\n    <h3>Advanced Router class props</h3>\n    <div class=\"code code--multi\">\n      ...\n\n      const router = new Router(routes, {\n        refreshPage: true,\n      });\n\n      ...\n    </div>\n    <p>\n      Besides the first parameter i.e. the array of routes Router class also takes config obj as the second parameter.\n      <ul>\n        <li><b>refreshPage</b> - if set true then refresh the page on every hash change</li>\n      </ul>\n    </p>\n  ";
+  return "\n    <h2>Router</h2>\n\n    <p>A static router for creating hash routes.</p>\n    \n    <pre>\n    <code class=\"javascript\">\n    import { Router } from 'domr-framework';\n    import HomePageView from './views/HomePageView';\n    import ConfigView from './views/ConfigView';\n\n    const router = new Router([\n      {\n        path: '/',\n        view: HomePageView,\n        isDefault: true,\n      },\n      {\n        path: '/config/',\n        view: ConfigView,\n      },\n      {\n        path: '/config/:topic',\n        view: ConfigView,\n      },\n    ]);\n\n    router.Start();\n    </code>\n    </pre>\n    <p>Router supports wildcard entries like (*, :name)</p>\n\n\n    <h3>Router class</h3>\n\n    <p>\n      Router() class takes array of routes as the first parameter.\n      The routes object contains two main parameter and one optional isDefault parameter.\n      <ul>\n        <li><b>path</b> - hash url location</li>\n        <li><b>view</b> - a function to execute (without parentheses)</li>\n        <li><b>isDefault (optional)</b> - if set true then the route becomes the default path</li>\n      </ul>\n    </p>\n\n    <h3>.Start()</h3>\n\n    <p>\n      Initializes the router\n    </p>\n\n    <h3>Advanced Router class props</h3>\n    <pre>\n    <code class=\"javascript\">\n    ...\n\n    const router = new Router(routes, {\n      refreshPage: true,\n    });\n\n    ...\n    </code>\n    </pre>\n    <p>\n      Besides the first parameter i.e. the array of routes Router class also takes config obj as the second parameter.\n      <ul>\n        <li><b>refreshPage</b> - if set true then refresh the page on every hash change</li>\n      </ul>\n    </p>\n  ";
 };
 
 /***/ }),
@@ -1183,11 +1203,11 @@ exports.default = function () {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 exports.default = function () {
-  return "\n    <h2>View</h2>\n\n    <p>View is a function that executes when matching route is active.</p>\n\n    <div class=\"code code--multi\">\n      import HomePageContainer from '../containers/HomePageContainer';\n\n      export default function (data) {\n        const wrapper = document.getElementById('wrapper');\n        const home = new HomePageContainer();\n\n        wrapper.innerHTML = home.Render();\n      }\n    </div>\n\n    <p>A view updates root HTML element (#wrapper in this case) with the markup of given <a href=\"#/config/component\">Component</a></p>\n\n    <h3>data parameter</h3>\n    <p>a View takes data as an optional parameter</p>\n\n    <div class=\"code code--multi\">\n      console.log(data);\n\n      //output\n\n      {\n        path: \"/\"\n        metadata: \"\",\n        query: \"\",\n      }\n    </div>\n\n    <p>data obj can have three diffrent params\n      <ul>\n        <li><b>path</b> - hash router path</li>\n        <li><b>metadata</b> - data from wild card entries (e.g :entry) if they are present</li>\n        <li><b>query</b> - data from query entries (e.g ?interval=300&active=true) if they are present</li>\n      </ul>\n    </p>\n  ";
+    return "\n    <h2>View</h2>\n\n    <p>View is a function that executes when matching route is active.</p>\n    \n    <pre>\n    <code class=\"javascript\">\n    import HomePageContainer from '../containers/HomePageContainer';\n\n    export default function (data) {\n      const wrapper = document.getElementById('wrapper');\n      const home = new HomePageContainer();\n\n      wrapper.innerHTML = home.Render();\n    }\n    </code>\n    </pre>\n\n    <p>A view updates root HTML element (#wrapper in this case) with the markup of given <a href=\"#/config/component\">Component</a></p>\n\n    <h3>data parameter</h3>\n    <p>a View takes data as an optional parameter</p>\n\n    <pre>\n    <code class=\"javascript\">\n    console.log(data);\n\n    //output\n\n    {\n      path: \"/\",\n      metadata: \"\",\n      query: \"\",\n    }\n    </code>\n    </pre>\n\n    <p>data obj can have three diffrent params\n      <ul>\n        <li><b>path</b> - hash router path</li>\n        <li><b>metadata</b> - data from wild card entries (e.g :entry) if they are present</li>\n        <li><b>query</b> - data from query entries (e.g ?interval=300&active=true) if they are present</li>\n      </ul>\n    </p>\n  ";
 };
 
 /***/ }),
@@ -1202,7 +1222,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-  return "\n    <h2>Component</h2>\n\n    <p>Component is a class with HTML markup and events attached to it.</p>\n\n    <div class=\"code code--multi\">\n      import { Component } from 'domr-framework';\n\n      export default class extends Component {\n        constructor(name) {\n          super();\n          this.name = name;\n        }\n\n        Markup() {\n          return `\n            < a href=\"#\" class=\"toggle active\">Toggle ${this.name} < /a>\n          `;\n        }\n\n        Events() {\n          this.On('click', (self, e) => {\n            e.preventDefault();\n            const thisSelf = self;\n            console.log(thisSelf);\n          });\n        }\n\n        AfterRenderDone() {\n          const thisSelf = this.GetThisComponent();\n        }\n      }\n    </div>\n\n    <h3>Markup()</h3>\n    <p>Markup hosts HTML Markup for the component</p>\n\n    <h3>Events() and this.On()</h3>\n    <p>Events can be added by attaching them to this.On() and placing it inside Events()</p>\n\n    <h3>AfterRenderDone()</h3>\n    <p>as the name suggest delayed actions like loading ajax api can be done from here</p>\n\n    <h3>GetThisComponent()</h3>\n    <p>gets the Component (via querySelector) inside AfterRenderDone()</p>\n\n    <h3>Simplified Common Events</h3>\n    <p>\n      Some commonly used events has their separate shorthands which can replaced this.On().\n       <div class=\"code code--multi\">\n       ...\n\n        Events() {\n          this.Click((self, e) => {});\n\n          this.Mouseover((self, e) => {});\n\n          this.Mouseout((self, e) => {});\n\n          this.Input((self, e) => {});\n\n          this.Blur((self, e) => {});\n\n          this.Keydown((self, e) => {});\n\n          this.Keypress((self, e) => {});\n\n          this.Keyup((self, e) => {});\n        }\n\n        ...\n    </div>\n    </p>\n  ";
+  return "\n    <h2>Component</h2>\n\n    <p>Component is a class with HTML markup and events attached to it.</p>\n  \n    <pre>\n    <code class=\"javascript\">\n      import { Component } from 'domr-framework';\n\n      export default class extends Component {\n        constructor(name) {\n          super();\n          this.name = name;\n        }\n\n        Markup() {\n          return `\n            < a href=\"#\" class=\"toggle active\">Toggle ${this.name} < /a>\n          `;\n        }\n\n        Events() {\n          this.On('click', (self, e) => {\n            e.preventDefault();\n            const thisSelf = self;\n            console.log(thisSelf);\n          });\n        }\n\n        AfterRenderDone() {\n          const thisSelf = this.GetThisComponent();\n        }\n      }\n    </code>\n    </pre>\n\n    <h3>Markup()</h3>\n    <p>Markup hosts HTML Markup for the component</p>\n\n    <h3>Events() and this.On()</h3>\n    <p>Events can be added by attaching them to this.On() and placing it inside Events()</p>\n\n    <h3>AfterRenderDone()</h3>\n    <p>as the name suggest delayed actions like loading ajax api can be done from here</p>\n\n    <h3>GetThisComponent()</h3>\n    <p>gets the Component (via querySelector) inside AfterRenderDone()</p>\n\n    <h3>Simplified Common Events</h3>\n    <p>\n      Some commonly used events has their separate shorthands which can replaced this.On().\n    </p>\n\n    <pre>\n    <code class=\"javascript\">\n    ...\n\n    Events() {\n      this.Click((self, e) => {});\n\n      this.Mouseover((self, e) => {});\n\n      this.Mouseout((self, e) => {});\n\n      this.Input((self, e) => {});\n\n      this.Blur((self, e) => {});\n\n      this.Keydown((self, e) => {});\n\n      this.Keypress((self, e) => {});\n\n      this.Keyup((self, e) => {});\n    }\n\n    ...\n    </code>\n    <pre>\n  ";
 };
 
 /***/ }),
@@ -1217,7 +1237,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-  return "\n    <h2>Render</h2>\n\n    <p>To process a Component it has to be rendered. The Component can be rendered inside another Component or a view.</p>\n    <div class=\"code code--multi\">\n      // Example of a view\n      import HomePageComponent from '../containers/HomePageComponent';\n\n      export default function (data) {\n        const wrapper = document.getElementById('wrapper');\n        const home = new HomePageContainer();\n\n        wrapper.innerHTML = home.Render();\n      }\n    </div>\n    \n    <h3>.Render()</h3>\n    <p>.Render() is a the simpliest method of outputting a Component. It simply returns the content inside Markup()\n      and fires Events() and AfterRenderDone() related to the Component.\n    </p>\n\n\n    <h3>Add Methods</h3>\n    <p>There are various add methods which takes the target (parent/sibling) container as parameter and renders the component.</p>\n    \n    <div class=\"code code--multi\">\n      ...\n\n        // wrapper is parent container\n        const wrapper = document.getElementById('wrapper');\n        const home = new HomePageContainer();\n        \n        home.AddTo(wrapper)\n\n      ...\n    </div>\n\n    <p>\n      List of Add Methods\n\n      <table>\n        <tbody>\n          <tr>\n            <th>Method</th>\n            <th>Target</th>\n            <th>Action</th>\n          </tr>\n          <tr>\n            <td>.AddTo()</td>\n            <td>Parent Container</td>\n            <td>Appends into the parent</td>\n          </tr>\n          <tr>\n            <td>.AddFromStartTo()</td>\n            <td>Parent Container</td>\n            <td>Appends from start (prepend) into the parent</td>\n          </tr>\n          <tr>\n            <td>.Before()</td>\n            <td>Sibling Container</td>\n            <td>Renders before the sibling container</td>\n          </tr>\n          <tr>\n            <td>.After()</td>\n            <td>Sibling Container</td>\n            <td>Renders after the sibling container</td>\n          </tr>\n          <tr>\n            <td>.Replace()</td>\n            <td>Sibling Container</td>\n            <td>Replaces the sibling container</td>\n          </tr>\n        </tbody>\n      </table>\n    </p>\n  ";
+  return "\n    <h2>Render</h2>\n\n    <p>To process a Component it has to be rendered. The Component can be rendered inside another Component or a view.</p>\n    <pre>\n    <code class=\"javascript\">\n    // Example of a view\n    import HomePageComponent from '../containers/HomePageComponent';\n\n    export default function (data) {\n      const wrapper = document.getElementById('wrapper');\n      const home = new HomePageContainer();\n\n      wrapper.innerHTML = home.Render();\n    }\n    </code>\n    </pre>\n    \n    <h3>.Render()</h3>\n    <p>.Render() is a the simpliest method of outputting a Component. It simply returns the content inside Markup()\n      and fires Events() and AfterRenderDone() related to the Component.\n    </p>\n\n\n    <h3>Add Methods</h3>\n    <p>There are various add methods which takes the target (parent/sibling) container as parameter and renders the component.</p>\n    \n    <pre>\n    <code class=\"javascript\">\n    ...\n\n    // wrapper is parent container\n    const wrapper = document.getElementById('wrapper');\n    const home = new HomePageContainer();\n    \n    home.AddTo(wrapper)\n\n    ...\n    </code>\n    </pre>\n\n    <p>\n      List of Add Methods\n\n      <table>\n        <tbody>\n          <tr>\n            <th>Method</th>\n            <th>Target</th>\n            <th>Action</th>\n          </tr>\n          <tr>\n            <td>.AddTo()</td>\n            <td>Parent Container</td>\n            <td>Appends into the parent</td>\n          </tr>\n          <tr>\n            <td>.AddFromStartTo()</td>\n            <td>Parent Container</td>\n            <td>Appends from start (prepend) into the parent</td>\n          </tr>\n          <tr>\n            <td>.Before()</td>\n            <td>Sibling Container</td>\n            <td>Renders before the sibling container</td>\n          </tr>\n          <tr>\n            <td>.After()</td>\n            <td>Sibling Container</td>\n            <td>Renders after the sibling container</td>\n          </tr>\n          <tr>\n            <td>.Replace()</td>\n            <td>Sibling Container</td>\n            <td>Replaces the sibling container</td>\n          </tr>\n        </tbody>\n      </table>\n    </p>\n  ";
 };
 
 /***/ }),
